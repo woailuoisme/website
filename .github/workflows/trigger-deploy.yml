@@ -16,7 +16,7 @@ jobs:
       - name: Send deployment webhook
         run: |
           # 发送 POST 请求到部署钩子 URL
-          curl -X POST "YOUR_DEPLOY_HOOK_URL" \
+          curl -X POST "$DEPLOY_HOOK_URL" \
             -H "Content-Type: application/json" \
             -d '{"event": "deploy", "branch": "main"}'  # 可选：传递自定义参数
         env:
