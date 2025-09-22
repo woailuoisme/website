@@ -1,0 +1,24 @@
+name: Trigger Deployment via Webhook
+
+# 触发条件：推送到 main 分支或手动触发
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:  # 允许手动触发
+
+jobs:
+  trigger-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Send deployment webhook
+        run: |
+          # 发送 POST 请求到部署钩子 URL
+          curl -X POST "YOUR_DEPLOY_HOOK_URL" \
+            -H "Content-Type: application/json" \
+            -d '{"event": "deploy", "branch": "main"}'  # 可选：传递自定义参数
+        env:
+          # 建议将钩子 URL 存储在 GitHub Secrets 中，避免明文暴露
+          DEPLOY_HOOK_URL: ${{ secrets.DEPLOY_HOOK_URL }}
