@@ -1,0 +1,9 @@
+{
+  "label": "开发指南",
+  "position": 5,
+  "link": {
+    "type": "generated-index",
+    "title": "开发指南",
+    "description": "了解项目架构、贡献指南和测试方法，帮助开发者参与项目开发。"
+  }
+}
